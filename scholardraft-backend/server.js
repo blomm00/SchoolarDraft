@@ -14,6 +14,11 @@ app.use(express.json());
 // Routes
 app.use('/api/v1', apiRoutes);
 
+// Root Route (To prevent 404 when visiting the main URL)
+app.get('/', (req, res) => {
+  res.send('ScholarDraft Backend API is Running on Vercel!');
+});
+
 // Health Check
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', message: 'ScholarDraft API is running' });
