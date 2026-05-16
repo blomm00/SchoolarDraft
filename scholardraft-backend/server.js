@@ -19,6 +19,11 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok', message: 'ScholarDraft API is running' });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://127.0.0.1:${PORT}`);
-});
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`Server is running on http://127.0.0.1:${PORT}`);
+  });
+}
+
+// Export for Vercel Serverless
+module.exports = app;
